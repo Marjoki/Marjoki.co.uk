@@ -1,0 +1,15 @@
+diff --git a/node_modules/@opennextjs/cloudflare/dist/api/config.js b/node_modules/@opennextjs/cloudflare/dist/api/config.js
+index b5b7163..f18c3ec 100644
+--- a/node_modules/@opennextjs/cloudflare/dist/api/config.js
++++ b/node_modules/@opennextjs/cloudflare/dist/api/config.js
+@@ -6,8 +6,9 @@ import assetResolver from "./overrides/asset-resolver/index.js";
+  * @returns the OpenNext configuration object
+  */
+ export function defineCloudflareConfig(config = {}) {
+-    const { incrementalCache, tagCache, queue, cachePurge, enableCacheInterception = false, routePreloadingBehavior = "none", } = config;
++    const { incrementalCache, tagCache, queue, cachePurge, enableCacheInterception = false, routePreloadingBehavior = "none", buildCommand } = config;
+     return {
++        ...(buildCommand ? { buildCommand } : {}),
+         default: {
+             override: {
+                 wrapper: "cloudflare-node",
